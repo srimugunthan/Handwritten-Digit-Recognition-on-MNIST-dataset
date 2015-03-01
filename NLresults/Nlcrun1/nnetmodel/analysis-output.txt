@@ -1,0 +1,129 @@
+a 784-10-10 network with 7960 weights
+options were - softmax modelling 
+-------------------------------Train set prediction results-------------
+           
+predresults   0   1   2   3   4   5   6   7   8   9
+          0 284   0   4  40   1  11   4   1  12   5
+          1   0 396  18   6  11   2  10  12  27   7
+          2  15  18 214  15   0  12  24   0  33   3
+          3  56   0  25 233   0  71   0   0   5   2
+          4  13   0   4   0 173  21  13   7  15  23
+          5  26   1   3  15   1 100   3  27  10   7
+          6   3   4  61   6  39  32 351   5   5   6
+          7   0   0   0   0   0   0   0   3   0   0
+          8   8  11  46  91  10 116   1  92 290  53
+          9   5   0   1   2 129  17   6 266   8 294
+--------------------------Time taken--------------------------------------
+[1] "Training time in secs:"
+   user  system elapsed 
+556.715   0.328 561.030 
+[1] "---"
+[1] "Prediction time in secs:"
+   user  system elapsed 
+  0.204   0.044   0.451 
+[1] "---"
+------------Confusion matrix for train dataset------------------------
+Confusion Matrix and Statistics
+
+           
+predresults   0   1   2   3   4   5   6   7   8   9
+          0 284   0   4  40   1  11   4   1  12   5
+          1   0 396  18   6  11   2  10  12  27   7
+          2  15  18 214  15   0  12  24   0  33   3
+          3  56   0  25 233   0  71   0   0   5   2
+          4  13   0   4   0 173  21  13   7  15  23
+          5  26   1   3  15   1 100   3  27  10   7
+          6   3   4  61   6  39  32 351   5   5   6
+          7   0   0   0   0   0   0   0   3   0   0
+          8   8  11  46  91  10 116   1  92 290  53
+          9   5   0   1   2 129  17   6 266   8 294
+
+Overall Statistics
+                                         
+               Accuracy : 0.5845         
+                 95% CI : (0.569, 0.5998)
+    No Information Rate : 0.1075         
+    P-Value [Acc > NIR] : < 2.2e-16      
+                                         
+                  Kappa : 0.538          
+ Mcnemar's Test P-Value : NA             
+
+Statistics by Class:
+
+                     Class: 0 Class: 1 Class: 2 Class: 3 Class: 4 Class: 5 Class: 6 Class: 7
+Sensitivity            0.6927   0.9209   0.5691  0.57108  0.47527  0.26178  0.85194 0.007264
+Specificity            0.9783   0.9739   0.9669  0.95573  0.97360  0.97430  0.95513 1.000000
+Pos Pred Value         0.7845   0.8098   0.6407  0.59439  0.64312  0.51813  0.68555 1.000000
+Neg Pred Value         0.9654   0.9903   0.9558  0.95150  0.94881  0.92593  0.98251 0.897423
+Prevalence             0.1025   0.1075   0.0940  0.10200  0.09100  0.09550  0.10300 0.103250
+Detection Rate         0.0710   0.0990   0.0535  0.05825  0.04325  0.02500  0.08775 0.000750
+Detection Prevalence   0.0905   0.1222   0.0835  0.09800  0.06725  0.04825  0.12800 0.000750
+Balanced Accuracy      0.8355   0.9474   0.7680  0.76341  0.72444  0.61804  0.90353 0.503632
+                     Class: 8 Class: 9
+Sensitivity            0.7160   0.7350
+Specificity            0.8809   0.8794
+Pos Pred Value         0.4039   0.4038
+Neg Pred Value         0.9650   0.9676
+Prevalence             0.1013   0.1000
+Detection Rate         0.0725   0.0735
+Detection Prevalence   0.1795   0.1820
+Balanced Accuracy      0.7985   0.8072
+---------------------------------------------------------------------
+=====================ROC value================================
+Area under the curve: 0.8095
+---------------------------------------------------------------------
+-------------------------------Test set prediction results-------------
+[1] "Prediction time in secs:"
+   user  system elapsed 
+  0.452   0.212  10.505 
+[1] "---"
+------------Confusion matrix for test dataset------------------------
+Confusion Matrix and Statistics
+
+           
+predresults    0    1    2    3    4    5    6    7    8    9
+          0  662    0   51   62    0   42   24    5   35    9
+          1    0 1050   53   10   32   13   15   35   74   13
+          2   40   40  588   47    7   35   59   10   51    6
+          3  160    1   37  575    0  210    2   13   27    8
+          4   17    1    4    2  457   43   67    4   41   78
+          5   49   10    9   24    8  153   12   54   41   26
+          6   12    8  135    8  104   57  754    5   18   11
+          7    0    1    0    0    1    0    0    3    1    0
+          8   26   24  147  270   29  299   17  265  663  139
+          9   14    0    8   12  344   40    8  634   23  719
+
+Overall Statistics
+                                          
+               Accuracy : 0.5624          
+                 95% CI : (0.5526, 0.5722)
+    No Information Rate : 0.1135          
+    P-Value [Acc > NIR] : < 2.2e-16       
+                                          
+                  Kappa : 0.5134          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: 0 Class: 1 Class: 2 Class: 3 Class: 4 Class: 5 Class: 6 Class: 7
+Sensitivity            0.6755   0.9251   0.5698   0.5693   0.4654   0.1715   0.7871 0.002918
+Specificity            0.9747   0.9724   0.9671   0.9491   0.9715   0.9744   0.9604 0.999666
+Pos Pred Value         0.7438   0.8108   0.6659   0.5566   0.6401   0.3964   0.6781 0.500000
+Neg Pred Value         0.9651   0.9902   0.9513   0.9515   0.9435   0.9231   0.9770 0.897438
+Prevalence             0.0980   0.1135   0.1032   0.1010   0.0982   0.0892   0.0958 0.102800
+Detection Rate         0.0662   0.1050   0.0588   0.0575   0.0457   0.0153   0.0754 0.000300
+Detection Prevalence   0.0890   0.1295   0.0883   0.1033   0.0714   0.0386   0.1112 0.000600
+Balanced Accuracy      0.8251   0.9487   0.7684   0.7592   0.7184   0.5730   0.8737 0.501292
+                     Class: 8 Class: 9
+Sensitivity            0.6807   0.7126
+Specificity            0.8653   0.8795
+Pos Pred Value         0.3528   0.3990
+Neg Pred Value         0.9617   0.9646
+Prevalence             0.0974   0.1009
+Detection Rate         0.0663   0.0719
+Detection Prevalence   0.1879   0.1802
+Balanced Accuracy      0.7730   0.7961
+---------------------------------------------------------------------
+=====================ROC value================================
+Area under the curve: 0.7735
+---------------------------------------------------------------------

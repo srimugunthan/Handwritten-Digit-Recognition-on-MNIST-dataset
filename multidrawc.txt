@@ -1,0 +1,9 @@
+RunID	Datasetsize	TrainingAccuracy	TestsetAccuracy	TrainingAUC TestAUC	
+					
+Run1	4000	0.91	0.76	0.97	0.92
+Run2	8000	0.73	0.68	0.8	0.78
+Run3	12000	0.78	0.743	0.939	0.91
+Run4	16000	0.82	0.79	0.92	0.9131
+Run5	18000	0.839	0.803	0.94	0.92
+Run6	20000	0.81	0.79	0.89	0.87
+

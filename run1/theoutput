@@ -1,0 +1,43 @@
+> source('~/TookitakiEx/main.R')
+# weights:  7860 (7065 variable)
+initial  value 46051.701860 
+iter  10 value 9735.560433
+iter  20 value 7484.983611
+iter  30 value 6854.478001
+iter  40 value 6539.073018
+iter  50 value 6379.196625
+iter  60 value 6274.878130
+iter  70 value 6218.152254
+iter  80 value 6187.282923
+iter  90 value 6158.263716
+iter 100 value 6126.517730
+final  value 6126.517730 
+stopped after 100 iterations
+[1] "Total time taken in  secs:"
+    user   system  elapsed 
+1260.282    4.980 1503.351 
+[1] " ----------"
+Warning message:
+In sink(type = "output") : no sink to remove
+> source('~/TookitakiEx/main.R')
+# weights:  7960
+initial  value 54222.955441 
+iter  10 value 25928.158834
+iter  20 value 23651.193811
+iter  30 value 22186.809453
+iter  40 value 21839.117533
+iter  50 value 20592.586492
+iter  60 value 19836.150513
+iter  70 value 19188.995907
+iter  80 value 18595.266031
+iter  90 value 18149.334704
+iter 100 value 17665.335663
+final  value 17665.335663 
+stopped after 100 iterations
+[1] "Total time taken in  secs:"
+    user   system  elapsed 
+1040.546    3.472 1346.762 
+[1] " ----------"
+Warning message:
+In sink(type = "output") : no sink to remove
+> 

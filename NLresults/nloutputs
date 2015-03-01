@@ -1,0 +1,98 @@
+> source('~/TookitakiEx/main.R')
+[1] 4000
+# weights:  7960
+initial  value 11663.961894 
+iter  10 value 6387.043116
+iter  20 value 5788.554548
+iter  30 value 5665.956157
+iter  40 value 5442.799154
+iter  50 value 5343.331134
+iter  60 value 5232.854784
+iter  70 value 5206.214576
+iter  80 value 5154.597869
+iter  90 value 4915.253929
+iter 100 value 4797.434172
+final  value 4797.434172 
+stopped after 100 iterations
+[1] 8000
+# weights:  7960
+initial  value 23307.688774 
+iter  10 value 12552.619543
+iter  20 value 10709.295600
+iter  30 value 9544.105854
+iter  40 value 9158.984619
+iter  50 value 8918.517046
+iter  60 value 8776.175740
+iter  70 value 8570.104441
+iter  80 value 8137.298894
+iter  90 value 8037.634047
+iter 100 value 7659.846234
+final  value 7659.846234 
+stopped after 100 iterations
+[1] 12000
+# weights:  7960
+initial  value 32275.833671 
+iter  10 value 20740.185145
+iter  20 value 18430.499997
+iter  30 value 17705.608224
+iter  40 value 17351.987791
+iter  50 value 16721.746054
+iter  60 value 15932.268482
+iter  70 value 14693.623690
+iter  80 value 14479.188704
+iter  90 value 13806.771315
+iter 100 value 13728.225729
+final  value 13728.225729 
+stopped after 100 iterations
+[1] 16000
+# weights:  7960
+initial  value 40992.424573 
+iter  10 value 21348.003943
+iter  20 value 17219.303919
+iter  30 value 16584.414088
+iter  40 value 16195.721889
+iter  50 value 15514.782581
+iter  60 value 14500.507413
+iter  70 value 13986.201552
+iter  80 value 13255.819616
+iter  90 value 13035.049536
+iter 100 value 12631.891343
+final  value 12631.891343 
+stopped after 100 iterations
+[1] 18000
+# weights:  7960
+initial  value 44780.316654 
+iter  10 value 19640.636449
+iter  20 value 18010.215534
+iter  30 value 17015.095538
+iter  40 value 16663.449922
+iter  50 value 15721.478597
+iter  60 value 14846.021896
+iter  70 value 14427.550729
+iter  80 value 14059.724698
+iter  90 value 13711.854756
+iter 100 value 13351.025406
+final  value 13351.025406 
+stopped after 100 iterations
+[1] 20000
+# weights:  7960
+initial  value 55659.305657 
+iter  10 value 24117.669796
+iter  20 value 19105.716335
+iter  30 value 18175.877612
+iter  40 value 17563.867986
+iter  50 value 16837.656367
+iter  60 value 16490.813830
+iter  70 value 15904.772055
+iter  80 value 15723.380322
+iter  90 value 15320.331385
+iter 100 value 14992.370192
+final  value 14992.370192 
+stopped after 100 iterations
+[1] "Total time taken in  secs:"
+    user   system  elapsed 
+5053.872   10.024 5590.900 
+[1] " ----------"
+Warning message:
+In sink(type = "output") : no sink to remove
+> 
