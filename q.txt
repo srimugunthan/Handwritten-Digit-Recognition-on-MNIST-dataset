@@ -1,0 +1,12 @@
+1. what is ROC curve and AUC ? When to use and what are the traps and pitfalls?
+
+2. What is logistic regression algorithm? Explain in terms of cost function?
+
+3. What is softmax regression?
+
+4. What is one vs all classification?
+
+5. what is the learning curve? What is bias variance tradeoff?
+
+6. Explain neural network?
+
