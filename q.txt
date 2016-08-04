@@ -2,11 +2,24 @@
 
 2. What is logistic regression algorithm? Explain in terms of cost function?
 
+https://www.r-bloggers.com/logistic-regression-with-r-step-by-step-implementation-part-2/
+
 3. What is softmax regression?
 
 4. What is one vs all classification?
 
 5. what is the learning curve? What is bias variance tradeoff?
 
+http://scikit-learn.org/stable/modules/learning_curve.html
+https://followthedata.wordpress.com/2012/06/02/practical-advice-for-machine-learning-bias-variance/
+http://stackoverflow.com/questions/4617365/what-is-a-learning-curve-in-machine-learning
+http://www.astroml.org/sklearn_tutorial/practical.html
+
 6. Explain neural network?
+
+
+7. Explain how does apply function work in R with example?
+
+8. what is generalised linear model?
+http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf
 
