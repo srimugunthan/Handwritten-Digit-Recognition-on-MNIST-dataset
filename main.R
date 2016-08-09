@@ -5,7 +5,7 @@ library("neuralnet")
 library("nnet")
 library("devtools")
 library("pROC")
-mainDir="/home/srimugunthan/TookitakiEx"
+mainDir="/Users/sdhandap/Handwritten-Digit-Recognition-on-MNIST-dataset"
 setwd(mainDir)
 
 source("loadMNIST.R")
@@ -696,22 +696,13 @@ gc()
 #glmlogistic(lmtraindf,lmtestdf)
 
 #multinomialmodel(smalltraindf,testdf)
-#nnetmodel(smalltraindf,testdf)
+nnetmodel(smalltraindf,testdf)
 #myneuralnet(smalltraindf,testdf)
-mysoftmax(smalltraindf,testdf)
+#mysoftmax(smalltraindf,testdf)
 
 #Multinomial_learning_curve(smalltraindf,testdf)
 #NNET_learning_curve(smalltraindf,testdf)
-#dummy_mynnetcall()
-#dummy_mysoftmaxcall()
 
-# 
-# n <- names(trainx)
-# l <- subset(trainx, FALSE)
-# for(i in length(l))
-#   print(l[i])
-#   
-# 
 sink(type="output")
 totlend.time <- proc.time()
 Total.time.taken <- totlend.time - totlstart.time
