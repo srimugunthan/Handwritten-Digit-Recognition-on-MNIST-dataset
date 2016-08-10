@@ -3,15 +3,13 @@ library("gains")
 library("glmnet")
 library("neuralnet")
 library("nnet")
-library("devtools")
 library("pROC")
-mainDir="/Users/sdhandap/Handwritten-Digit-Recognition-on-MNIST-dataset"
+mainDir="/home/sdhandap/Handwritten-Digit-Recognition-on-MNIST-dataset"
 setwd(mainDir)
 
 source("loadMNIST.R")
 source("binomiallogistic.R")
-source("mysoftmaxImplem.R")
-source("mySupervisedNNET.R")
+
 
 
 # glmnetmodel <- function(traindat, testdat)
@@ -342,225 +340,7 @@ mysimple_logistic <- function(traindf, testdf)
 }
 
 
-mysoftmax <- function(traindf, testdf)
-{
-  subDir="mysoftmax"  
-  dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
-  setwd(file.path(mainDir, subDir))
-  
-  
-  start.time <- proc.time()
-  
-  softmaxTrain(traindata=traindf[,1:784],  Ypred= traindf$y)
-  
-  end.time <- proc.time()
-  Training.time.taken <- end.time - start.time
-  
-  
-  #mysoftmaxmodel <-softmaxTrain(traindata=traindf[1:7],  Ypred= traindf$V8)
-  #predprobs <- predict(mysoftmaxmodel, testdata = traindf[1:7])
-  
-  
-  predstart.time <- proc.time()
-  #dses <- data.frame(ses = c("0", "1", "2"), write = mean(ml$write))
-  predprobs <- softmaxPredict(testdata = traindf[,1:784])
-  predend.time <- proc.time()
-  Pred.time.taken <- predend.time - predstart.time
-  
-  # 
-  cum.probs <- t(apply(predprobs,1,cumsum))
-  
-  # Draw random values
-  vals <- runif(nrow(traindf))
-  
-  # Join cumulative probabilities and random draws
-  tmp <- cbind(cum.probs,vals)
-  
-  # For each row, get choice index.
-  k <- ncol(predprobs)
-  predresults <-  apply(tmp,1,function(x) length(which(x[1:k] < x[k+1])))
-  
-  results <- table(predresults,traindf$y)
-  rocobj <- roc(predresults,traindf$y)
-  
-  sink(file = "analysis-output.txt")
-  cat("-------------------------------Train set prediction results-------------\n")
-  print((results))
-  cat("--------------------------Time taken--------------------------------------\n")
-  print("Training time in secs:")
-  print(Training.time.taken)
-  print("---")
-  print("Prediction time in secs:")
-  print(Pred.time.taken)
-  print("---")
-  
-  cat("------------Confusion matrix for train dataset------------------------\n")
-  print(confusionMatrix(results))
-  cat("---------------------------------------------------------------------\n")
-  cat("=====================ROC value================================\n")
-  print(auc(rocobj))
-  cat("---------------------------------------------------------------------\n")
-  sink(NULL)
-  
-  ################now to test set ############
-  
-  
-  
-  predstart.time <- proc.time()
-  #dses <- data.frame(ses = c("0", "1", "2"), write = mean(ml$write))
-  predprobs <- softmaxPredict(testdata = testdf[,1:784])
-  predend.time <- proc.time()
-  Pred.time.taken <- predend.time - predstart.time
-  
-  
-  
-  
-  # 
-  cum.probs <- t(apply(predprobs,1,cumsum))
-  
-  # Draw random values
-  vals <- runif(nrow(testdf))
-  
-  # Join cumulative probabilities and random draws
-  tmp <- cbind(cum.probs,vals)
-  
-  # For each row, get choice index.
-  k <- ncol(predprobs)
-  predresults <-  apply(tmp,1,function(x) length(which(x[1:k] < x[k+1])))
-  
-  results <- table(predresults,testdf$y)
-  
-  rocobj <- roc(predresults,testdf$y)
-  
-  sink(file = "analysis-output.txt",append=TRUE)
-  cat("-------------------------------Test set prediction results-------------\n")
-  print((results))
-  
-  print("Prediction time in secs:")
-  print(Pred.time.taken)
-  print("---")
-  
-  cat("------------Confusion matrix for test dataset------------------------\n")
-  print(confusionMatrix(results))
-  cat("---------------------------------------------------------------------\n")
-  cat("=====================ROC value================================\n")
-  print(auc(rocobj))
-  cat("---------------------------------------------------------------------\n")
-  sink(NULL)
-  
-  
-  setwd(mainDir)
-}
 
-
-myneuralnet <- function(traindf, testdf)
-{
-  subDir="myNnet"  
-  dir.create(file.path(mainDir, subDir), showWarnings = FALSE)
-  setwd(file.path(mainDir, subDir))
-  
-  start.time <- proc.time()
-  
-  myNnetTrain(traindata=traindf[,1:784],  Ypred= traindf$y)
-  
-  end.time <- proc.time()
-  Training.time.taken <- end.time - start.time
-  
-  
-  
-  predstart.time <- proc.time()
-  #dses <- data.frame(ses = c("0", "1", "2"), write = mean(ml$write))
-  predprobs <- myNnetPredict(testdata = traindf[,1:784])
-  predend.time <- proc.time()
-  Pred.time.taken <- predend.time - predstart.time
-  
-  
-  
-  
-  
-  cum.probs <- t(apply(predprobs,1,cumsum))
-  
-  # Draw random values
-  vals <- runif(nrow(traindf))
-  
-  # Join cumulative probabilities and random draws
-  tmp <- cbind(cum.probs,vals)
-  
-  # For each row, get choice index.
-  k <- ncol(predprobs)
-  predresults <-  apply(tmp,1,function(x) length(which(x[1:k] < x[k+1])))
-  
-  results <- table(predresults,traindf$y)
-  rocobj <- roc(predresults,traindf$y)
-  
-  sink(file = "analysis-output.txt")
-  cat("-------------------------------Train set prediction results-------------\n")
-  print((results))
-  cat("--------------------------Time taken--------------------------------------\n")
-  print("Training time in secs:")
-  print(Training.time.taken)
-  print("---")
-  print("Prediction time in secs:")
-  print(Pred.time.taken)
-  print("---")
-  
-  cat("------------Confusion matrix for train dataset------------------------\n")
-  print(confusionMatrix(results))
-  cat("---------------------------------------------------------------------\n")
-  cat("=====================ROC value================================\n")
-  print(auc(rocobj))
-  cat("---------------------------------------------------------------------\n")
-  sink(NULL)
-  
-  
-  
-  ################## now to test set ############
-  
-  
-  predstart.time <- proc.time()
-  #dses <- data.frame(ses = c("0", "1", "2"), write = mean(ml$write))
-  predprobs <- myNnetPredict(testdata = testdf[,1:784])
-  predend.time <- proc.time()
-  Pred.time.taken <- predend.time - predstart.time
-  
-  
-  
-  # 
-  cum.probs <- t(apply(predprobs,1,cumsum))
-  
-  # Draw random values
-  vals <- runif(nrow(testdf))
-  
-  # Join cumulative probabilities and random draws
-  tmp <- cbind(cum.probs,vals)
-  
-  # For each row, get choice index.
-  k <- ncol(predprobs)
-  predresults <-  apply(tmp,1,function(x) length(which(x[1:k] < x[k+1])))
-  
-  results <- table(predresults,testdf$y)
-  rocobj <- roc(predresults,testdf$y)
-  
-  sink(file = "analysis-output.txt",append=TRUE)
-  cat("-------------------------------Test set prediction results-------------\n")
-  print((results))
-  
-  print("Prediction time in secs:")
-  print(Pred.time.taken)
-  print("---")
-  
-  cat("------------Confusion matrix for test dataset------------------------\n")
-  print(confusionMatrix(results))
-  cat("---------------------------------------------------------------------\n")
-  cat("=====================ROC value================================\n")
-  print(auc(rocobj))
-  cat("---------------------------------------------------------------------\n")
-  sink(NULL)
-  
-  
-  setwd(mainDir)
-  
-}
 
 
 glmlogistic <- function(traindf, testdf)
@@ -596,7 +376,7 @@ glmlogistic <- function(traindf, testdf)
 
 Multinomial_learning_curve <- function(traindf, testdf)
 {
-  trainlens <- c(4000,  8000,   12000,   16000,   18000)
+  trainlens <- c(   10000,  20000, 30000, 40000, 50000 ,60000)
   for (i in 1:length(trainlens)) 
   {
     
@@ -612,7 +392,7 @@ Multinomial_learning_curve <- function(traindf, testdf)
     
     rv <- multinomialmodel(subsettraindf,testdf)
     
-    mainDir <<- "/home/srimugunthan/TookitakiEx"  
+    mainDir <<- "/home/sdhandap/Handwritten-Digit-Recognition-on-MNIST-dataset"
     setwd(file.path(mainDir))
     sink(file = "Mlcurve-result.txt",append=TRUE)
     print(c(trainlens[i] , rv))
@@ -625,7 +405,7 @@ Multinomial_learning_curve <- function(traindf, testdf)
 
 NNET_learning_curve <- function(traindf, testdf)
 {
-  trainlens <- c(4000,  8000,   12000,   16000,   18000,20000)
+  trainlens <- c(   10000,  20000, 30000, 40000, 50000 ,60000)
   for (i in 1:length(trainlens)) 
   {
     
@@ -641,7 +421,7 @@ NNET_learning_curve <- function(traindf, testdf)
     
     rv <- nnetmodel(subsettraindf,testdf)
     
-    mainDir <<- "/home/srimugunthan/TookitakiEx"  
+    mainDir <<- "/home/sdhandap/Handwritten-Digit-Recognition-on-MNIST-dataset"
     setwd(file.path(mainDir))
     sink(file = "Nlcurve-result.txt",append=TRUE)
     print(c(trainlens[i] , rv))
@@ -651,9 +431,17 @@ NNET_learning_curve <- function(traindf, testdf)
 }
 
 
+#################
+#  START
+#################
+
+
 totlstart.time <- proc.time()
 
 
+#################
+# read in the data
+################# 
 traindat <- load_image_file('./train-images-idx3-ubyte')
 testdat  <- load_image_file('./t10k-images-idx3-ubyte')
 
@@ -668,41 +456,53 @@ testdat$y <- load_label_file('./t10k-labels-idx1-ubyte')
  testdf <- as.data.frame(testdat$x)
  testdf$y <- testdat$y
 
-
-# #show_digit(train$x[5,]) 
-rm(traindat)
-rm(testdat)
-gc()
+#################
+ # sample to smaller data for quick testing
+ ################# 
+# # #show_digit(train$x[5,]) 
+# rm(traindat)
+# rm(testdat)
+# gc()
+# # 
+# #lmtraindf <- subset(traindf,((traindf$y == 0) | (traindf$y == 1)))
+# #lmtestdf <- subset(testdf,((testdf$y == 0) | (testdf$y == 1)))
 # 
-#lmtraindf <- subset(traindf,((traindf$y == 0) | (traindf$y == 1)))
-#lmtestdf <- subset(testdf,((testdf$y == 0) | (testdf$y == 1)))
-
-#samplestrain <- sample(1:nrow(traindf),20000)
-#remsamples <- setdiff(1:nrow(traindf),samplestrain )
-#smalltraindf <- traindf[samplestrain,]
-smalltraindf <- traindf[sample(1:nrow(traindf),2000),]
-
-#remtraindf <-   traindf[remsamples,]
-
-#smalltraindf <- traindf[1:20000,]
-#smalltraindf <- head(traindf,10000)
-rm(traindf)
-#rm(testdf)
-gc()
-#devtools::install_github("krlmlr/ulimit")
-#ulimit::memory_limit(2000)
-
+# #samplestrain <- sample(1:nrow(traindf),20000)
+# #remsamples <- setdiff(1:nrow(traindf),samplestrain )
+# #smalltraindf <- traindf[samplestrain,]
+# smalltraindf <- traindf[sample(1:nrow(traindf),2000),]
+# 
+# #remtraindf <-   traindf[remsamples,]
+# 
+# #smalltraindf <- traindf[1:20000,]
+# #smalltraindf <- head(traindf,10000)
+# rm(traindf)
+# #rm(testdf)
+# gc()
+# #devtools::install_github("krlmlr/ulimit")
+# #ulimit::memory_limit(2000)
+# 
+ 
+ 
+ ################# 
+# implementation of different models 
+#################
 #mysimple_logistic(lmtraindf,lmtestdf)
 #glmlogistic(lmtraindf,lmtestdf)
 
 #multinomialmodel(smalltraindf,testdf)
-nnetmodel(smalltraindf,testdf)
-#myneuralnet(smalltraindf,testdf)
-#mysoftmax(smalltraindf,testdf)
+#nnetmodel(traindf,testdf)
 
-#Multinomial_learning_curve(smalltraindf,testdf)
-#NNET_learning_curve(smalltraindf,testdf)
 
+ ################# 
+ # multiple runs for different training set sizes
+ #################
+Multinomial_learning_curve(traindf,testdf)
+#NNET_learning_curve(traindf,testdf)
+
+ ################# 
+ # END with printing time elapsed
+ ################# 
 sink(type="output")
 totlend.time <- proc.time()
 Total.time.taken <- totlend.time - totlstart.time

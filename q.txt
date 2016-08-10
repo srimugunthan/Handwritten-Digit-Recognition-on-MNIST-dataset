@@ -1,13 +1,71 @@
 1. what is ROC curve and AUC ? When to use and what are the traps and pitfalls?
 
+
+What is it?
+In a Receiver Operating Characteristic (ROC) curve the true positive rate (Sensitivity) is plotted in function of the false positive rate (100-Specificity) for different cut-off points
+he ROC graph is sometimes called the sensitivity vs (1 − specificity) plot
+
+TPR=TruePositives/(TruePositives+FalseNegatives)
+
+FPR=FalsePositives/(FalsePositives+TrueNegatives)
+
+
+
+
+ADV:
+One is that the resulting ROC is invariant against class skew of the applied data set – that means a data set featuring 60% positive labels will yield the same (statistically expected) ROC as a data set featuring 45% positive labels (though this will affect the cost associated with a given point of the ROC).
+
+
+The other is that the ROC is invariant against the evaluated score – which means that we could compare a model giving non-calibrated scores like a regular linear regression with a logistic regression or a random forest model whose scores can be considered as class probabilities
+
+
+
+Analysing ROC curves:
+
+Good:
+
+if you're lucky enough to have a perfect classifier, then you'll also have a perfect trade-off between TPR and FPR (meaning you'll have a TPR of 1 and an FPR of 0). In that case, your ROC curve looks something like this.
+
+Therefore the closer the ROC curve is to the upper left corner, the higher the overall accuracy of the test
+
+Perfect classification: 
+Bad:
+Anything that falls below the triangle is as good as random guess [2]
+
+https://www.r-bloggers.com/illustrated-guide-to-roc-and-auc/
+[2] https://ccrma.stanford.edu/workshops/mir2009/references/ROCintro.pdf
+
+--------------
+Area under the curve:
+ You can think of the AUC as sort of a holistic number that represents how well your TPR and FPR is looking in aggregate.
+
+To make it super simple:
+
+AUC=0 -> BAD
+AUC=1 -> GOOD
+
+INTERPRETATION:
+The AUC of a classifier is equivalent to the probability that the classifier will rank a randomly chosen positive instance higher than a randomly chosen negative instance.
+
+One of which is that it is the average sensitivity of a classifier under the assumption that one is equally likely to choose any value of the specificity — under the assumption of a uniform distribution over specificity.
+
+
+PROBLEM:
+This is that it is fundamentally incoherent in terms of misclassification costs: the AUC uses different misclassification cost distributions for different classifiers. This means that using the AUC is equivalent to using different metrics to evaluate different classification rules. It is equivalent to saying that, using one classifier, misclassifying a class 1 point is p times as serious as misclassifying a class 0 point, but, using another classifier, misclassifying a class 1 point is P times as serious, where p = P. This is nonsensical because the relative severities of different kinds of misclassifications of individual points is a property of the problem, not the classifiers which happen to have been chosen.
+
+
+-----------------------------------------------------------------------------------------------
 2. What is logistic regression algorithm? Explain in terms of cost function?
 
 https://www.r-bloggers.com/logistic-regression-with-r-step-by-step-implementation-part-2/
 
+-----------------------------------------------------------------------------------------------
 3. What is softmax regression?
 
+-----------------------------------------------------------------------------------------------
 4. What is one vs all classification?
 
+-----------------------------------------------------------------------------------------------
 5. what is the learning curve? What is bias variance tradeoff?
 
 http://scikit-learn.org/stable/modules/learning_curve.html
@@ -15,11 +73,14 @@ https://followthedata.wordpress.com/2012/06/02/practical-advice-for-machine-lear
 http://stackoverflow.com/questions/4617365/what-is-a-learning-curve-in-machine-learning
 http://www.astroml.org/sklearn_tutorial/practical.html
 
+-----------------------------------------------------------------------------------------------
 6. Explain neural network?
 
-
+-----------------------------------------------------------------------------------------------
 7. Explain how does apply function work in R with example?
 
+-----------------------------------------------------------------------------------------------
 8. what is generalised linear model?
 http://statmath.wu.ac.at/courses/heather_turner/glmCourse_001.pdf
 
+-----------------------------------------------------------------------------------------------
